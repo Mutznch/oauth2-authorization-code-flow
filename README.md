@@ -12,6 +12,8 @@ Próximo passo, na pasta deste repositório, execute o seguinte comando para bai
 
   npm install<br><br>
   
+Agora crie um arquivo ".env" e preencha-o com as informações presentes no ".env.example": (este arquivo deve ficar no raiz deste repositório)
+  
 Pronto, basta agora executar o codigo com o comando a seguir:
 
   npm start<br><br>
