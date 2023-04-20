@@ -57,7 +57,7 @@ app.get('/auth', async (req, res) => {
         const response = await axios.post(`https://api.twitter.com/2/oauth2/token`, {
             code,
             grant_type: 'authorization_code',
-            redirect_uri: "http://localhost:3001/auth",
+            redirect_uri,
             code_verifier: code_challenge
         }, {
             headers: {
