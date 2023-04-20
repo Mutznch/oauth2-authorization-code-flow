@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import axios from 'axios';
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -27,15 +28,41 @@ app.use(express.static(`${__dirname}/../public`));
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/../templates`);
 
+
+
+
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-let code;
-app.get('/auth', async (req, res) => {
-    code = req.query.code;
+const code_challenge = "6sri5noetf7"
+const client_id = "dm5oZ0ZMTVNZeDJsQW8zUUhOeGY6MTpjaQ";
+const redirect_uri = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${client_id}&redirect_uri=http://localhost:3001/auth&scope=tweet.read%20users.read%20follows.read%20offline.access&state=spe4pnsl319&code_challenge=${code_challenge}&code_challenge_method=plain`;
+const bearer = '';
+app.post('/login', async (req, res) => {
     const axios = newAxios();
-    axios.get()
+    axios.get(redirect_uri)
+    .catch(err => console.log(err));
+})
+
+app.post('/auth', async (req, res) => {
+    const code = req.query.code;
+    const axios = newAxios({
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${bearer}`
+        },
+        data: {
+            code,
+            'grant_type':'authorization_code',
+            client_id,
+            redirect_uri,
+            'code_verifier':code_challenge
+        }
+    });
+    axios.post("https://api.twitter.com/2/oauth2/token")
 });
+
+
 
 export default app;
