@@ -12,13 +12,6 @@ Próximo passo, na pasta deste repositório, execute o seguinte comando para bai
 
   npm install<br><br>
   
-Agora crie um arquivo ".env" e preencha-o com as seguintes informações da sua aplicação: (este arquivo deve ficar no raiz deste repositório)
-
-  CODE_CHALLENGE= "numero aleatório"<br>
-  CLIENT_ID= "Id cliente"<br>
-  CLIENT_SECRET= "Segredo do Cliente"<br>
-  REDIRECT_URI= "Uri de redirecionamento"<br><br>
-  
 Pronto, basta agora executar o codigo com o comando a seguir:
 
   npm start<br><br>
